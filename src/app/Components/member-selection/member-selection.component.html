@@ -1,0 +1,8 @@
+<!-- <p>member-selection works!</p> -->
+<div class="col-xxl-12">
+    <select [(ngModel)]="selectedMember" style="cursor: pointer; size: 20px;">
+        <option value="" disabled selected>Select a member</option>
+        <option *ngFor="let member of members" [value]="member">{{member}}</option>
+    </select>
+    <button (click)="refresh()" style="background-color: skyblue; margin-left: 80px; cursor: pointer; size: 20px;" [disabled]="!selectedMember">Refresh Table</button>
+</div> 
