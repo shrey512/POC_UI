@@ -1,141 +1,151 @@
-<!-- <p>eligibility works!</p> -->
-<div class="row">
-    <div style="padding: 5px; padding-right: 400px;">
-        <h3>Legacy Eligibility Solution Result </h3>
-        <hr style="margin: 5px 0; margin-bottom: 20px ; border: 1px solid black;">
-        <table class="thick-border" [border]="20" [cellSpacing]="0">
-            <thead style="background-color: orange;">
-                <tr>
-                    <th [width]="250">Benefit</th>
-                    <th [width]="250">Is Eligible?</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let eligiblebenefit of benefits">
-                    <td>{{eligiblebenefit.name}}</td>
-                    <td>{{eligiblebenefit.iseligible}}</td>
-                </tr>
-            </tbody>
-        </table>
+<div class="adjacency">
+    <!--Legacy State-->
+    <div class="Column" >
+        <div class="font-consistent">
+            <h3>Legacy Eligibility Solution Results</h3>
+            <hr style="margin: 5px 0; margin-bottom: 20px ; border: 1px solid black; width: 85.7%;">
+            <h4>Table 1. Overview of benefit eligibility for member using legacy solution.</h4>
+            <table class="thick-border" [border]="20" [cellSpacing]="0">
+                <thead style="background-color: orange;">
+                    <tr>
+                        <th [width]="250">Benefit</th>
+                        <th [width]="250">Is Eligible?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let eligiblebenefit of benefits">
+                        <td>{{eligiblebenefit.name}}</td>
+                        <td style="text-align: center;">{{convertToUppercase(eligiblebenefit.iseligible)}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br><br>
+        <div class="row"> 
+            <div class="font-consistent">
+                <h3>Legacy Member Rates Solution Results</h3>
+                <hr style="margin: 5px 0; margin-bottom: 20px ; border: 1px solid black;">
+                <h4>Table 2. Overview of benefit rates for member using legacy solution.</h4>
+            <table style="width: 1100px;" class="thick-border" [border]="20" [cellSpacing]="0">
+                <thead style="background-color: orange;">
+                    <tr>
+                        <th>CustomProd<br>Desc</th>
+                        <th>Benefit<br>Id</th>
+                        <th>PlanDesc</th>
+                        <th>CarrierPlanCode</th>
+                        <th>Tier</th>
+                        <th>From<br>Age</th>
+                        <th>To<br>Age</th>
+                        <th>Premium</th>
+                        <th>From<br>Salary</th>
+                        <th>To<br>Salary</th>
+                        <th>Employer<br>Portion</th>
+                        <th>Rate<br>Category</th>
+                        <th>ProposalRateId</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let calcpremiums of premiumsl">
+                        <td>{{calcpremiums.customproddesc}}</td>
+                        <td>{{calcpremiums.benefitid}}</td>
+                        <td>{{calcpremiums.plandesc}}</td>
+                        <td>{{calcpremiums.carrierplancode}}</td>
+                        <td>{{calcpremiums.tier}}</td>
+                        <td>{{calcpremiums.fromage}}</td>
+                        <td>{{calcpremiums.toage}}</td>
+                        <td>{{calcpremiums.premium}}</td>
+                        <td>{{calcpremiums.fromsalary}}</td>
+                        <td>{{calcpremiums.tosalary}}</td>
+                        <td>{{calcpremiums.employerportion}}</td>
+                        <td>{{calcpremiums.ratecategory}}</td>
+                        <td>{{calcpremiums.proposalrateid}}</td>
+                    </tr>
+                </tbody>
+            </table>
 
+            </div>
+            <!--Match Column-->
+            <div style="margin-top: 2px; margin-left: 50px; margin-right: 50px;">
+                <h3 style="color: white;">. </h3>
+                <table class="thick-border" style="margin-top: 80px; width: 100px;" [border]="20" [cellSpacing]="0"> 
+                    <thead style="background-color: black; color: white;">
+                        <tr class="font-consistent">
+                            <th>Match<br>Column</th>
+                        </tr>
+                    </thead>
+                    <tbody class="font-consistent">
+                        <tr *ngFor="let matchoutput of matches">
+                            <td [ngClass]="{'red-cell': !matchoutput.matchvalue}" style="text-align: center;">{{convertToUppercase(matchoutput.matchvalue)}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-    <div>
-        <h3>New Eligibility Solution Results</h3>
-        <hr style="margin: 5px 0; margin-bottom: 20px ; border: 1px solid black;">
-        <table class="thick-border" [border]="20" [cellSpacing]="0">
-            <thead style="background-color: lightseagreen;">
-                <tr>
-                    <th [width]="250">Benefit</th>
-                    <th [width]="250">Is Eligible?</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let eligiblebenefit of benefits">
-                    <td>{{eligiblebenefit.name}}</td>
-                    <td>{{eligiblebenefit.iseligible}}</td>
-                </tr>
-            </tbody>
-        </table>
 
-    </div>
-</div>
-<br><br><br>
-<div class="row">
-    <div class="column">
-        <h3>Legacy Member Rates Solution Results</h3>
-        <hr style="margin: 5px 0; margin-bottom: 20px ; border: 1px solid black;">
-        <table class="thick-border" [border]="20" [cellSpacing]="0">
-            <thead style="background-color: orange;">
-                <tr>
-                    <th>CustomProdDesc</th>
-                    <th>BenefitID</th>
-                    <th>PlanDesc</th>
-                    <th>CarrierPlanCode</th>
-                    <th>Tier</th>
-                    <th>FromAge</th>
-                    <th>ToAge</th>
-                    <th>Premium</th>
-                    <th>FromSalary</th>
-                    <th>ToSalary</th>
-                    <th>EmployerPortion</th>
-                    <th>RateCategory</th>
-                    <th>ProposalRateId</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let calcpremiums of premiums">
-                    <td>{{calcpremiums.customproddesc}}</td>
-                    <td>{{calcpremiums.benefitid}}</td>
-                    <td>{{calcpremiums.plandesc}}</td>
-                    <td>{{calcpremiums.carrierplancode}}</td>
-                    <td>{{calcpremiums.tier}}</td>
-                    <td>{{calcpremiums.fromage}}</td>
-                    <td>{{calcpremiums.toage}}</td>
-                    <td>{{calcpremiums.premium}}</td>
-                    <td>{{calcpremiums.fromsalary}}</td>
-                    <td>{{calcpremiums.tosalary}}</td>
-                    <td>{{calcpremiums.employerportion}}</td>
-                    <td>{{calcpremiums.ratecategory}}</td>
-                    <td>{{calcpremiums.proposalrateid}}</td>
-                </tr>
-            </tbody>
-        </table>
+    <!--Future State-->
+    <div class="Column">
+        <div class="font-consistent">
+            <h3>New Eligibility Solution Results</h3>
+            <hr style="margin: 5px 0; margin-bottom: 20px ; border: 1px solid black;">
+            <h4>Table 3. Overview of benefit eligibility for member using new rules expression language.</h4>
+            <table class="thick-border" [border]="20" [cellSpacing]="0">
+                <thead style="background-color: lightseagreen;">
+                    <tr>
+                        <th [width]="250" >Benefit</th>
+                        <th [width]="250">Is Eligible?</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let eligiblebenefit of benefits">
+                        <td>{{eligiblebenefit.name}}</td>
+                        <td style="text-align: center;">{{convertToUppercase(eligiblebenefit.iseligible)}}</td>
+                    </tr>
+                </tbody>
+            </table>
 
-    </div>
-    <div class="column">
-        <table class="thick-border" style="margin-top: 80px;" [border]="20" [cellSpacing]="0"> 
-            <thead style="background-color: black; color: white;">
-                <tr>
-                    <th>Match Column</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let matchoutput of matches">
-                    <td>{{matchoutput.matchvalue}}</td>
-                </tr>
-            </tbody>
-        </table>
-
-    </div>
-    <div class="column">
-        <h3>New Member Rates Solution Results</h3>
-        <hr style="margin: 5px 0; margin-bottom: 20px ; border: 1px solid black;">
-        <table class="thick-border" [border]="20" [cellSpacing]="0">
-            <thead style="background-color: lightseagreen;">
-                <tr>
-                    <th>CustomProdDesc</th>
-                    <th>BenefitID</th>
-                    <th>PlanDesc</th>
-                    <th>CarrierPlanCode</th>
-                    <th>Tier</th>
-                    <th>FromAge</th>
-                    <th>ToAge</th>
-                    <th>Premium</th>
-                    <th>FromSalary</th>
-                    <th>ToSalary</th>
-                    <th>EmployerPortion</th>
-                    <th>RateCategory</th>
-                    <th>ProposalRateId</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let calcpremiums of premiums">
-                    <td>{{calcpremiums.customproddesc}}</td>
-                    <td>{{calcpremiums.benefitid}}</td>
-                    <td>{{calcpremiums.plandesc}}</td>
-                    <td>{{calcpremiums.carrierplancode}}</td>
-                    <td>{{calcpremiums.tier}}</td>
-                    <td>{{calcpremiums.fromage}}</td>
-                    <td>{{calcpremiums.toage}}</td>
-                    <td>{{calcpremiums.premium}}</td>
-                    <td>{{calcpremiums.fromsalary}}</td>
-                    <td>{{calcpremiums.tosalary}}</td>
-                    <td>{{calcpremiums.employerportion}}</td>
-                    <td>{{calcpremiums.ratecategory}}</td>
-                    <td>{{calcpremiums.proposalrateid}}</td>
-                </tr>
-            </tbody>
-        </table>
-
+        </div>
+        <br><br>
+        <div class="font-consistent">
+            <h3>New Member Rates Solution Results</h3>
+            <hr style="margin: 5px 0; margin-bottom: 20px ; border: 1px solid black;">
+            <h4>Table 4. Overview of benefit rates for member using new rules expression language.</h4>
+            <table style="width: 1100px;" class="thick-border" [border]="20" [cellSpacing]="0">
+                <thead style="background-color: lightseagreen;">
+                    <tr>
+                        <th>CustomProd<br>Desc</th>
+                        <th>Benefit<br>Id</th>
+                        <th>PlanDesc</th>
+                        <th>CarrierPlanCode</th>
+                        <th>Tier</th>
+                        <th>From<br>Age</th>
+                        <th>To<br>Age</th>
+                        <th>Premium</th>
+                        <th>From<br>Salary</th>
+                        <th>To<br>Salary</th>
+                        <th>Employer<br>Portion</th>
+                        <th>Rate<br>Category</th>
+                        <th>ProposalRateId</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let calcpremiums of premiumsn">
+                        <td>{{calcpremiums.customproddesc}}</td>
+                        <td>{{calcpremiums.benefitid}}</td>
+                        <td>{{calcpremiums.plandesc}}</td>
+                        <td>{{calcpremiums.carrierplancode}}</td>
+                        <td>{{calcpremiums.tier}}</td>
+                        <td>{{calcpremiums.fromage}}</td>
+                        <td>{{calcpremiums.toage}}</td>
+                        <td>{{calcpremiums.premium}}</td>
+                        <td>{{calcpremiums.fromsalary}}</td>
+                        <td>{{calcpremiums.tosalary}}</td>
+                        <td>{{calcpremiums.employerportion}}</td>
+                        <td>{{calcpremiums.ratecategory}}</td>
+                        <td>{{calcpremiums.proposalrateid}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

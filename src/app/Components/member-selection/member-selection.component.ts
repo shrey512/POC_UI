@@ -7,13 +7,17 @@ import { AppService } from 'src/app/app.service';
   styleUrls: ['./member-selection.component.scss']
 })
 export class MemberSelectionComponent {
+
   members: string[] = ['123JD','223JH','268GF'];
   selectedMember: string=''; 
 
-entermemberid: string = '';
-
 constructor(private appService: AppService) {
-  
+
+}
+
+onSelectMember(member: string): void{
+  this.appService.setselectedmember(member);
+  console.log('selected member:', member);
 }
 
 ngOnInit(): void {
@@ -22,8 +26,20 @@ ngOnInit(): void {
 
 
 refresh(): void{
-  this.appService.refreshBenefits();
+  if(this.selectedMember == '123JD'){
+    this.appService.refreshBenefits();
   console.log('Refresh clicked');
+  }
+  //temp
+  else if(this.selectedMember == '223JH'){
+    this.appService.refreshBenefits223JH();
+  console.log('Refresh clicked');
+  }
+  else {
+    this.appService.refreshBenefits268();
+  console.log('Refresh clicked');
+  }
+  //
 }
 
 }

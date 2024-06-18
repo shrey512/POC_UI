@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MemberSelectionComponent } from './Components/member-selection/member-selection.component';
 import { EligibilityComponent } from './Components/eligibility/eligibility.component';
+import { AppService } from './app.service';
 
 
 @NgModule({
@@ -19,7 +20,7 @@ import { EligibilityComponent } from './Components/eligibility/eligibility.compo
     AppRoutingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AppService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

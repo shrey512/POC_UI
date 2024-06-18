@@ -11,4 +11,17 @@
 .column {
     padding: 5px;
     padding-right: 40px;
+    padding-left: 40px;
   }
+
+.adjacency{
+  display: flex;
+}
+
+.red-cell{
+  background-color: yellow;
+}
+
+.font-consistent{
+  font-family: calibri;
+}

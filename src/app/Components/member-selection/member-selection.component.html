@@ -1,6 +1,6 @@
 <!-- <p>member-selection works!</p> -->
 <div class="col-xxl-12">
-    <select [(ngModel)]="selectedMember" style="cursor: pointer; size: 20px;">
+    <select [(ngModel)]="selectedMember"  style="cursor: pointer; size: 20px;" (change) = "onSelectMember(selectedMember)">
         <option value="" disabled selected>Select a member</option>
         <option *ngFor="let member of members" [value]="member">{{member}}</option>
     </select>
